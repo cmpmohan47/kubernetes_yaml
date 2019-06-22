@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: storagepods
+spec:
+  hard:
+    persistentvolumeclaims: 2
+    limits.memory: 2Gi

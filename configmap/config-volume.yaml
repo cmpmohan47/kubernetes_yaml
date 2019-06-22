@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: config-volume
+spec:
+  containers:
+  - args:
+    image: nginx
+    name: config-volume
+    volumeMounts:
+    - mountPath: /etc/config
+      name: config-volume
+  volumes:
+    - name: config-volume
+      configMap:
+        name: env-properties
+        items:
+        - key: enemies
+          path: keys
+  restartPolicy: Never 

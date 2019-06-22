@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-mul-configmap
+spec:
+  containers:
+  - args:
+    image: nginx
+    name: nginx-mul-configmap
+    command: [ "/bin/sh", "-c", "echo $(special_key) $(special_key2)" ]
+    env:
+      - name: special_key
+        valueFrom:
+          configMapKeyRef:
+            name: literal
+            key: look
+       
+      - name: special_key2
+        valueFrom:
+          configMapKeyRef:
+            name: literal
+            key: good
+  restartPolicy: Never
